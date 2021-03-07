@@ -1,5 +1,6 @@
-from aws_cdk import core
+from os import path
 
+from aws_cdk import core
 
 class NetworkPipelineStack(core.Stack):
 
@@ -7,3 +8,5 @@ class NetworkPipelineStack(core.Stack):
         super().__init__(scope, construct_id, **kwargs)
 
         # The code that defines your stack goes here
+        this_dir = path.dirname(__file__)
+        
