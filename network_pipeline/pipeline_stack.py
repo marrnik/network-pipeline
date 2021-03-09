@@ -2,8 +2,9 @@ from aws_cdk import core
 from aws_cdk import aws_codepipeline as codepipeline
 from aws_cdk import aws_codepipeline_actions as cpactions
 from aws_cdk import pipelines
+from .network_stage import NetworkStage
 
-NET_ACCOUNT = '260212010872'
+NETWORK_HUB_ACCOUNT = '260212010872'
 
 class PipelineStack(core.Stack):
     def __init__(self, scope: core.Construct, id: str, **kwargs):
@@ -29,3 +30,8 @@ class PipelineStack(core.Stack):
               cloud_assembly_artifact=cloud_assembly_artifact,
               install_command='npm install -g aws-cdk && pip install -r requirements.txt',
               synth_command='cdk synth'))
+
+        pipeline.add_application_stage(NetworkStage(self, 'Pre-Prod', env={
+            'account': NETWORK_HUB_ACCOUNT,
+            'region':'us-east-1'
+        }))
