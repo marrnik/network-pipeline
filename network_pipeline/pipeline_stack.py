@@ -19,7 +19,7 @@ class PipelineStack(core.Stack):
           source_action=cpactions.GitHubSourceAction(
               action_name='GitHub',
               output=source_artifact,
-              oauth_token=core.SecretValue.secrets_manager('github-tokem'),
+              oauth_token=core.SecretValue.secrets_manager('github-token'),
               owner='marrnik',
               repo='network-pipeline',
               trigger=cpactions.GitHubTrigger.POLL),
