@@ -36,4 +36,9 @@ class PipelineStack(core.Stack):
             'region':'us-east-1'
         }))
 
+        pipeline.add_application_stage(NetworkStage(self, 'Prod', env={
+            'account': NETWORK_HUB_ACCOUNT,
+            'region':'us-east-1'
+        }))
+
 
